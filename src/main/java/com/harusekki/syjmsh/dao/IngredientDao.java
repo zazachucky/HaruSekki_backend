@@ -1,4 +1,4 @@
-package dao;
+package com.harusekki.syjmsh.dao;
 
 public interface IngredientDao {
 }

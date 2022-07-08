@@ -1,7 +1,6 @@
-package service;
+package com.harusekki.syjmsh.service;
 
-import dao.RecipeDao;
-import dto.RecipeDto;
+import com.harusekki.syjmsh.dto.RecipeDto;
 
 import java.util.List;
 

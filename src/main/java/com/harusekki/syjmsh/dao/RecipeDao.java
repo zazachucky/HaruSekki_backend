@@ -1,9 +1,7 @@
-package dao;
+package com.harusekki.syjmsh.dao;
 
-import dto.RecipeDto;
+import com.harusekki.syjmsh.dto.RecipeDto;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 

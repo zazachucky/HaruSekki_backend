@@ -1,11 +1,11 @@
-package controller;
+package com.harusekki.syjmsh.controller;
 
-import dto.RecipeDto;
+import com.harusekki.syjmsh.dto.RecipeDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import service.RecipeService;
+import com.harusekki.syjmsh.service.RecipeService;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package dto;
+package com.harusekki.syjmsh.dto;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -13,12 +13,15 @@ import javax.persistence.Table;
 @Setter
 @ToString
 @Entity
-@Table(name = "image")
-public class ImageDto {
+@Table(name = "cooking_step")
+public class CookingStepDto {
     @Id
-    @Column(name="image_id")
+    @Column(name="cs_id")
     private Long id;
 
-    @Column(name="image_path")
-    private String path;
+    @Column(name="cs_description")
+    private String description;
+
+    @Column(name="cs_image")
+    private String image;
 }

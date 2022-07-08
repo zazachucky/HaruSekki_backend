@@ -1,4 +1,4 @@
-package dto;
+package com.harusekki.syjmsh.dto;
 
 
 import lombok.Getter;
@@ -27,6 +27,6 @@ public class IngredientDto {
     private String category;
 
     @Column(name="ingredient_image")
-    private ImageDto image;
+    private String image;
 
 }
