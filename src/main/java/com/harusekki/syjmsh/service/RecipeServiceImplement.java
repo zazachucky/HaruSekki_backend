@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class RecipeServiceImplement implements RecipeService{
@@ -15,29 +16,42 @@ public class RecipeServiceImplement implements RecipeService{
 
     @Override
     public List<RecipeDto> findByTitle(String title) throws Exception{
-        List<RecipeDto> recipeDtoList = new ArrayList<>() {
-        };
-        if(!title.equals("")){
-            List<RecipeDto> result = recipeDao.findByTitle(title);
-            if(result.isEmpty()){
-                recipeDtoList = result;
-                return recipeDtoList;
-            }
-        }
+        List<RecipeDto> recipeDtoList = new ArrayList<>();
+
+        recipeDtoList.addAll(recipeDao.findAllByTitleContaining(title));
+
+//        if(!title.equals("")){
+//            List<RecipeDto> result = new ArrayList<>();
+//            result.addAll(recipeDao.findByTitle(title));
+//            if(result.isEmpty()){
+//                recipeDtoList.addAll(result);
+//                return recipeDtoList;
+//            }
+//        }
         return recipeDtoList;
     }
 
     @Override
     public List<RecipeDto> findByCategory(String category) throws Exception{
-        List<RecipeDto> recipeDtoList = new ArrayList<>() {
-        };
-        if(!category.equals("")){
-            List<RecipeDto> result = recipeDao.findByCategory(category);
-            if(result.isEmpty()){
-                recipeDtoList = result;
-                return recipeDtoList;
-            }
-        }
+        List<RecipeDto> recipeDtoList = new ArrayList<>();
+
+        recipeDtoList.addAll(recipeDao.findAllByCategoryContaining(category));
+
+//        if(!category.equals("")){
+//            List<RecipeDto> result = new ArrayList<>();
+//            result.addAll(recipeDao.findAllByCategory(category));
+//            if(result.isEmpty()){
+//                recipeDtoList.addAll(result);
+//                return recipeDtoList;
+//            }
+//        }
+        return recipeDtoList;
+    }
+
+    public List<RecipeDto> findAllById() throws Exception{
+        List<RecipeDto> recipeDtoList = new ArrayList<>();
+        recipeDtoList.addAll(recipeDao.findAllByOrderByIdDesc());
+
         return recipeDtoList;
     }
 }

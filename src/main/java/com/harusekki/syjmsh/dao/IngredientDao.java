@@ -1,4 +1,13 @@
 package com.harusekki.syjmsh.dao;
 
-public interface IngredientDao {
+import com.harusekki.syjmsh.dto.IngredientDto;
+import com.harusekki.syjmsh.dto.RecipeDto;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.List;
+
+public interface IngredientDao  extends JpaRepository<IngredientDto, Long> {
+    List<IngredientDto> findAllByOrderByIdAsc();
+    List<IngredientDto> findAllByCategoryContaining(String category);
+
 }
