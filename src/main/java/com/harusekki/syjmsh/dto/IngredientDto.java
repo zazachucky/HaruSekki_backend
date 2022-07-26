@@ -5,10 +5,10 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -29,4 +29,6 @@ public class IngredientDto {
     @Column(name="ingredient_image")
     private String image;
 
+    @ManyToMany(mappedBy = "ingredientDtos")
+    private List<RecipeDto> recipeDtos = new ArrayList<>();
 }

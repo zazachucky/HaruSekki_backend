@@ -5,7 +5,9 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -31,11 +33,17 @@ public class RecipeDto {
 
     @Column(name="recipe_likes")
     private Long likes;
-    @Transient
-    private List<CookingStepDto> CookingProcess;
+
+    @OneToMany(mappedBy="recipeDto")
+    private List<CookingStepDto> cookingStepDtoList = new ArrayList<>();
+
+    @ManyToMany
+    @JoinTable(name = "ingredient",
+                joinColumns = @JoinColumn(name = "recipe_id"),
+                inverseJoinColumns = @JoinColumn(name = "ingredient_id"))
+    private List<IngredientDto> ingredientDtos = new ArrayList<>();
+
     @Transient
     private List<ImageDto> imgList;
-    @Transient
-    private List<IngredientDto> ingredients;
 
 }

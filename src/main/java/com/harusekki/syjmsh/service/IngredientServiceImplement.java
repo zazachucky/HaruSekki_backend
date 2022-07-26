@@ -23,12 +23,18 @@ public class IngredientServiceImplement implements IngredientService{
 
         return ingredientDtoList;
     }
-
+    @Override
     public List<IngredientDto> findAllById() throws Exception{
         List<IngredientDto> ingredientDtoList = new ArrayList<>();
         ingredientDtoList.addAll(ingredientDao.findAllByOrderByIdAsc());
 
         return ingredientDtoList;
     }
+    @Override
+    public List<IngredientDto> findByRecipeId(Long recipe_id) throws Exception{
+        List<IngredientDto> ingredientDtoList = new ArrayList<>();
+        ingredientDtoList.addAll(ingredientDao.findAllByRecipeDtosId(recipe_id));
 
+        return ingredientDtoList;
+    }
 }

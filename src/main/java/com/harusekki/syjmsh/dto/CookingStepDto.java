@@ -4,10 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Getter
 @Setter
@@ -24,4 +21,8 @@ public class CookingStepDto {
 
     @Column(name="cs_image")
     private String image;
+
+    @ManyToOne
+    @JoinColumn(name="recipe_recipe_id", referencedColumnName = "recipe_id")
+    private RecipeDto recipeDto;
 }

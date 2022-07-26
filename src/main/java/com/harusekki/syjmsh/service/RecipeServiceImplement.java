@@ -20,14 +20,6 @@ public class RecipeServiceImplement implements RecipeService{
 
         recipeDtoList.addAll(recipeDao.findAllByTitleContaining(title));
 
-//        if(!title.equals("")){
-//            List<RecipeDto> result = new ArrayList<>();
-//            result.addAll(recipeDao.findByTitle(title));
-//            if(result.isEmpty()){
-//                recipeDtoList.addAll(result);
-//                return recipeDtoList;
-//            }
-//        }
         return recipeDtoList;
     }
 
@@ -37,17 +29,9 @@ public class RecipeServiceImplement implements RecipeService{
 
         recipeDtoList.addAll(recipeDao.findAllByCategoryContaining(category));
 
-//        if(!category.equals("")){
-//            List<RecipeDto> result = new ArrayList<>();
-//            result.addAll(recipeDao.findAllByCategory(category));
-//            if(result.isEmpty()){
-//                recipeDtoList.addAll(result);
-//                return recipeDtoList;
-//            }
-//        }
         return recipeDtoList;
     }
-
+    @Override
     public List<RecipeDto> findAllById() throws Exception{
         List<RecipeDto> recipeDtoList = new ArrayList<>();
         recipeDtoList.addAll(recipeDao.findAllByOrderByIdDesc());

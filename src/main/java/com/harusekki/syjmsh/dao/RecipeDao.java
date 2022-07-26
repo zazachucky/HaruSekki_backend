@@ -9,6 +9,5 @@ import java.util.Optional;
 public interface RecipeDao extends JpaRepository<RecipeDto, Long> {
     List<RecipeDto> findAllByTitleContaining(String title);
     List<RecipeDto> findAllByCategoryContaining(String category);
-
     List<RecipeDto> findAllByOrderByIdDesc();
 }
