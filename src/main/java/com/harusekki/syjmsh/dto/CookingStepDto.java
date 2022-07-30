@@ -5,6 +5,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Getter
 @Setter
@@ -22,7 +23,7 @@ public class CookingStepDto {
     @Column(name="cs_image")
     private String image;
 
-    @ManyToOne
-    @JoinColumn(name="recipe_recipe_id", referencedColumnName = "recipe_id")
-    private RecipeDto recipeDto;
+    @Column(name="recipe_recipe_id")
+    private Long recipeid;
+
 }

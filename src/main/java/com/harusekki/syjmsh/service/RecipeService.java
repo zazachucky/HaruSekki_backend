@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.Optional;
 
 public interface RecipeService {
-    List<RecipeDto> findByTitle(String title) throws Exception;
-    List<RecipeDto> findByCategory(String category) throws Exception;
-
-    List<RecipeDto> findAllById() throws Exception;
+    List<RecipeDto> findByTitle(String title, String order) throws Exception;
+    List<RecipeDto> findByCategory(String category, String order) throws Exception;
+    List<RecipeDto> findAll(String order) throws Exception;
+    RecipeDto recipeDetail(Long id) throws Exception;
 }

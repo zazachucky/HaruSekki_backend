@@ -29,6 +29,6 @@ public class IngredientDto {
     @Column(name="ingredient_image")
     private String image;
 
-    @ManyToMany(mappedBy = "ingredientDtos")
-    private List<RecipeDto> recipeDtos = new ArrayList<>();
+    @Transient
+    private List<RecipeDto> recipeList;
 }

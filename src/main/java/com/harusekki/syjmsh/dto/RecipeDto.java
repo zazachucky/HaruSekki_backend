@@ -34,14 +34,11 @@ public class RecipeDto {
     @Column(name="recipe_likes")
     private Long likes;
 
-    @OneToMany(mappedBy="recipeDto")
-    private List<CookingStepDto> cookingStepDtoList = new ArrayList<>();
+    @Transient
+    private List<IngredientDto> ingredientList;
 
-    @ManyToMany
-    @JoinTable(name = "ingredient",
-                joinColumns = @JoinColumn(name = "recipe_id"),
-                inverseJoinColumns = @JoinColumn(name = "ingredient_id"))
-    private List<IngredientDto> ingredientDtos = new ArrayList<>();
+    @Transient
+    private List<CookingStepDto> csList;
 
     @Transient
     private List<ImageDto> imgList;

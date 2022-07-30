@@ -9,5 +9,5 @@ import java.util.List;
 public interface IngredientDao  extends JpaRepository<IngredientDto, Long> {
     List<IngredientDto> findAllByOrderByIdAsc();
     List<IngredientDto> findAllByCategoryContaining(String category);
-    List<IngredientDto> findAllByRecipeDtosId(Long recipe_id);
+//    List<IngredientDto> findAllByRecipeDtosId(Long recipe_id);
 }

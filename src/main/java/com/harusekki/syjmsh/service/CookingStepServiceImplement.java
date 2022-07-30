@@ -17,7 +17,7 @@ public class CookingStepServiceImplement implements CookingStepService{
     @Override
     public List<CookingStepDto> findByRecipeId(Long id) throws Exception {
         List<CookingStepDto> cookingStepDtoList = new ArrayList<>();
-        cookingStepDtoList.addAll(cookingStepDao.findAllByRecipeDtoId(id));
+        cookingStepDtoList.addAll(cookingStepDao.findAllByRecipeid(id));
 
         return cookingStepDtoList;
     }

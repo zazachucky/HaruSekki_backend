@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/control")
+@RequestMapping("/")
 @CrossOrigin("*")
 public class RecipeController {
     @Autowired
@@ -26,10 +26,10 @@ public class RecipeController {
     private CookingStepService cookingStepService;
 
     @GetMapping("/recipe/findbytitle")
-    public ResponseEntity<?> findByTitle(@RequestParam("recipe_title") String title) throws Exception {
+    public ResponseEntity<?> findRecipeByTitle(@RequestParam("recipe_title") String title, @RequestParam("order") String order) throws Exception {
         List<RecipeDto> recipeDtoList = new ArrayList<>();
         try {
-            recipeDtoList.addAll(recipeService.findByTitle(title));
+            recipeDtoList.addAll(recipeService.findByTitle(title, order));
             return new ResponseEntity<List<RecipeDto>>(recipeDtoList, HttpStatus.OK);
         } catch (Exception e) {
             return exceptionHandling(e);
@@ -37,10 +37,10 @@ public class RecipeController {
     }
 
     @GetMapping("/recipe/findbycategory")
-    public ResponseEntity<?> findByCategory(@RequestParam("recipe_category") String category) throws Exception {
+    public ResponseEntity<?> findRecipeByCategory(@RequestParam("recipe_category") String category, @RequestParam("order") String order) throws Exception {
         List<RecipeDto> recipeDtoList = new ArrayList<>();
         try {
-            recipeDtoList.addAll(recipeService.findByCategory(category));
+            recipeDtoList.addAll(recipeService.findByCategory(category, order));
             return new ResponseEntity<List<RecipeDto>>(recipeDtoList, HttpStatus.OK);
         } catch (Exception e) {
             return exceptionHandling(e);
@@ -48,18 +48,29 @@ public class RecipeController {
     }
 
     @GetMapping("/recipe/findall")
-    public ResponseEntity<?> findAll() throws Exception {
+    public ResponseEntity<?> findRecipeAll(@RequestParam("order") String order) throws Exception {
         List<RecipeDto> recipeDtoList = new ArrayList<>();
         try {
-            recipeDtoList.addAll(recipeService.findAllById());
+            recipeDtoList.addAll(recipeService.findAll(order));
             return new ResponseEntity<List<RecipeDto>>(recipeDtoList, HttpStatus.OK);
         } catch (Exception e) {
             return exceptionHandling(e);
         }
     }
 
+    @GetMapping("/recipe/detail")
+    public ResponseEntity<?> findRecipeDetail(@RequestParam("recipe_id") Long id) throws Exception {
+        RecipeDto recipeDto = new RecipeDto();
+        try{
+            recipeDto = recipeService.recipeDetail(id);
+            return new ResponseEntity<RecipeDto>(recipeDto, HttpStatus.OK);
+        }catch (Exception e) {
+            return exceptionHandling(e);
+        }
+    }
+
     @GetMapping("/ingredient/findbycategory")
-    public ResponseEntity<?> findByCategoryIngre(@RequestParam("ingredient_category") String category) throws Exception {
+    public ResponseEntity<?> findIngredientByCategory(@RequestParam("ingredient_category") String category) throws Exception {
         List<IngredientDto> ingredientDtoList = new ArrayList<>();
         try {
             ingredientDtoList.addAll(ingredientService.findByCategory(category));
@@ -70,7 +81,7 @@ public class RecipeController {
     }
 
     @GetMapping("/ingredient/findall")
-    public ResponseEntity<?> findAllIngre() throws Exception {
+    public ResponseEntity<?> findIngredientAll() throws Exception {
         List<IngredientDto> ingredientDtoList = new ArrayList<>();
         try {
             ingredientDtoList.addAll(ingredientService.findAllById());
@@ -81,20 +92,20 @@ public class RecipeController {
     }
 
 
-    @GetMapping("/ingredient/findbyrecipeid")
-    public ResponseEntity<?> findIngreByRecipeId(@RequestParam("recipe_id") Long id) throws Exception{
-        List<IngredientDto> ingredientDtoList = new ArrayList<>();
-        try{
-            ingredientDtoList.addAll(ingredientService.findByRecipeId(id));
-            List<String> list = new ArrayList<>();
-            for(IngredientDto i : ingredientDtoList){
-                list.add(i.getTitle());
-            }
-            return new ResponseEntity<List<String>>(list, HttpStatus.OK);
-        } catch (Exception e) {
-            return exceptionHandling(e);
-        }
-    }
+//    @GetMapping("/ingredient/findbyrecipeid")
+//    public ResponseEntity<?> findIngreByRecipeId(@RequestParam("recipe_id") Long id) throws Exception{
+//        List<IngredientDto> ingredientDtoList = new ArrayList<>();
+//        try{
+//            ingredientDtoList.addAll(ingredientService.findByRecipeId(id));
+//            List<String> list = new ArrayList<>();
+//            for(IngredientDto i : ingredientDtoList){
+//                list.add(i.getTitle());
+//            }
+//            return new ResponseEntity<List<String>>(list, HttpStatus.OK);
+//        } catch (Exception e) {
+//            return exceptionHandling(e);
+//        }
+//    }
 
     @GetMapping("/cookingstep/findall")
     public ResponseEntity<?> findAllCs() throws Exception {
@@ -113,16 +124,7 @@ public class RecipeController {
         List<CookingStepDto> list = new ArrayList<>();
         try {
             cookingStepDtoList.addAll(cookingStepService.findByRecipeId(id));
-            System.out.println("try OK  " + cookingStepDtoList.size());
-
-            for(CookingStepDto cs : cookingStepDtoList){
-                CookingStepDto temp = new CookingStepDto();
-                temp.setId(cs.getId());
-                temp.setDescription(cs.getDescription());
-                temp.setImage(cs.getImage());
-                list.add(temp);
-            }
-            return new ResponseEntity<List<CookingStepDto>>(list, HttpStatus.OK);
+            return new ResponseEntity<List<CookingStepDto>>(cookingStepDtoList, HttpStatus.OK);
         } catch (Exception e) {
             return exceptionHandling(e);
         }

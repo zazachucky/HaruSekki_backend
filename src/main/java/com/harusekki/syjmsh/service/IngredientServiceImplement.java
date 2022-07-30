@@ -17,24 +17,37 @@ public class IngredientServiceImplement implements IngredientService{
 
     @Override
     public List<IngredientDto> findByCategory(String category) throws Exception{
-        List<IngredientDto> ingredientDtoList = new ArrayList<>();
-
-        ingredientDtoList.addAll(ingredientDao.findAllByCategoryContaining(category));
-
-        return ingredientDtoList;
+        List<IngredientDto> tempList = new ArrayList<>();
+        tempList.addAll(ingredientDao.findAllByCategoryContaining(category));
+        List<IngredientDto> result = new ArrayList<>();
+        for(int i = 0 ; i < tempList.size(); i++){
+            IngredientDto ingredientDto = new IngredientDto();
+            ingredientDto.setTitle(tempList.get(i).getTitle());
+            ingredientDto.setImage(tempList.get(i).getImage());
+            ingredientDto.setId(tempList.get(i).getId());
+            result.add(ingredientDto);
+        }
+        return result;
     }
     @Override
     public List<IngredientDto> findAllById() throws Exception{
-        List<IngredientDto> ingredientDtoList = new ArrayList<>();
-        ingredientDtoList.addAll(ingredientDao.findAllByOrderByIdAsc());
-
-        return ingredientDtoList;
+        List<IngredientDto> tempList = new ArrayList<>();
+        tempList.addAll(ingredientDao.findAllByOrderByIdAsc());
+        List<IngredientDto> result = new ArrayList<>();
+        for(int i = 0 ; i < tempList.size(); i++){
+            IngredientDto ingredientDto = new IngredientDto();
+            ingredientDto.setTitle(tempList.get(i).getTitle());
+            ingredientDto.setImage(tempList.get(i).getImage());
+            ingredientDto.setId(tempList.get(i).getId());
+            result.add(ingredientDto);
+        }
+        return result;
     }
-    @Override
-    public List<IngredientDto> findByRecipeId(Long recipe_id) throws Exception{
-        List<IngredientDto> ingredientDtoList = new ArrayList<>();
-        ingredientDtoList.addAll(ingredientDao.findAllByRecipeDtosId(recipe_id));
-
-        return ingredientDtoList;
-    }
+//    @Override
+//    public List<IngredientDto> findByRecipeId(Long recipe_id) throws Exception{
+//        List<IngredientDto> ingredientDtoList = new ArrayList<>();
+//        ingredientDtoList.addAll(ingredientDao.findAllByRecipeDtosId(recipe_id));
+//
+//        return ingredientDtoList;
+//    }
 }
