@@ -1,9 +1,7 @@
 package com.harusekki.syjmsh.service;
 
 import com.harusekki.syjmsh.dao.IngredientDao;
-import com.harusekki.syjmsh.dao.RecipeDao;
 import com.harusekki.syjmsh.dto.IngredientDto;
-import com.harusekki.syjmsh.dto.RecipeDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

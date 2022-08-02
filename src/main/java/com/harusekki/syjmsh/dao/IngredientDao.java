@@ -17,5 +17,4 @@ public interface IngredientDao  extends JpaRepository<IngredientDto, Long> {
             "from recipe_has_ingredient\n" +
             "where recipe_recipe_id = :recipe_id);", nativeQuery = true)
     List<IngredientDto> findAllByRecipeId(@Param("recipe_id") Long id);
-//    List<IngredientDto> findAllByRecipeDtosId(Long recipe_id);
 }

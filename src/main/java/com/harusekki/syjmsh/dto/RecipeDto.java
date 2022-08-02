@@ -34,6 +34,9 @@ public class RecipeDto {
     @Column(name="recipe_likes")
     private Long likes;
 
+    @Column(name="recipe_imglist")
+    private String image;
+
     @Transient
     private List<IngredientDto> ingredientList;
 
@@ -42,5 +45,4 @@ public class RecipeDto {
 
     @Transient
     private List<ImageDto> imgList;
-
 }

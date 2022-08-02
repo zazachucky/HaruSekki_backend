@@ -21,4 +21,7 @@ public class ImageDto {
 
     @Column(name="image_path")
     private String path;
+
+    @Column(name="recipe_recipe_id")
+    private Long recipeid;
 }

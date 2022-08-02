@@ -25,5 +25,4 @@ public class CookingStepDto {
 
     @Column(name="recipe_recipe_id")
     private Long recipeid;
-
 }

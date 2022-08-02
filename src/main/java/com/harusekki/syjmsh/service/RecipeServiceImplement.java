@@ -1,6 +1,8 @@
 package com.harusekki.syjmsh.service;
 
 import com.harusekki.syjmsh.dao.CookingStepDao;
+import com.harusekki.syjmsh.dao.ImageDao;
+import com.harusekki.syjmsh.dao.IngredientDao;
 import com.harusekki.syjmsh.dao.RecipeDao;
 import com.harusekki.syjmsh.dto.RecipeDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,10 @@ public class RecipeServiceImplement implements RecipeService{
     private RecipeDao recipeDao;
     @Autowired
     private CookingStepDao cookingStepDao;
+    @Autowired
+    private ImageDao imageDao;
+    @Autowired
+    private IngredientDao ingredientDao;
     @Override
     public List<RecipeDto> findByTitle(String title, String order) throws Exception{
         List<RecipeDto> tempList = new ArrayList<>();
@@ -116,6 +122,8 @@ public class RecipeServiceImplement implements RecipeService{
         RecipeDto tempRecipe = new RecipeDto();
         tempRecipe = recipeDao.findById(id).get();
         tempRecipe.setCsList(cookingStepDao.findAllByRecipeid(id));
+        tempRecipe.setImgList(imageDao.findAllByRecipeid(id));
+        tempRecipe.setIngredientList(ingredientDao.findAllByRecipeId(id));
 
         return tempRecipe;
     }
