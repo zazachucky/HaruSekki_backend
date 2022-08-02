@@ -46,6 +46,16 @@ public class RecipeController {
             return exceptionHandling(e);
         }
     }
+    @GetMapping("/recipe/findbyingredients")
+    public ResponseEntity<?> findRecipeByIngredients(@RequestParam("ingredients") List<Long> ids) throws Exception {
+        List<RecipeDto> recipeDtoList = new ArrayList<>();
+        try {
+            recipeDtoList.addAll(recipeService.findByIngredients(ids));
+            return new ResponseEntity<List<RecipeDto>>(recipeDtoList, HttpStatus.OK);
+        } catch (Exception e) {
+            return exceptionHandling(e);
+        }
+    }
 
     @GetMapping("/recipe/findall")
     public ResponseEntity<?> findRecipeAll(@RequestParam("order") String order) throws Exception {
@@ -90,22 +100,16 @@ public class RecipeController {
             return exceptionHandling(e);
         }
     }
-
-
-//    @GetMapping("/ingredient/findbyrecipeid")
-//    public ResponseEntity<?> findIngreByRecipeId(@RequestParam("recipe_id") Long id) throws Exception{
-//        List<IngredientDto> ingredientDtoList = new ArrayList<>();
-//        try{
-//            ingredientDtoList.addAll(ingredientService.findByRecipeId(id));
-//            List<String> list = new ArrayList<>();
-//            for(IngredientDto i : ingredientDtoList){
-//                list.add(i.getTitle());
-//            }
-//            return new ResponseEntity<List<String>>(list, HttpStatus.OK);
-//        } catch (Exception e) {
-//            return exceptionHandling(e);
-//        }
-//    }
+    @GetMapping("/ingredient/findbyrecipeid")
+    public ResponseEntity<?> findIngredientByRecipeId(@RequestParam("recipe_id") Long id) throws Exception{
+        List<IngredientDto> ingredientDtoList = new ArrayList<>();
+        try{
+            ingredientDtoList.addAll(ingredientService.findByRecipeId(id));
+            return new ResponseEntity<List<IngredientDto>>(ingredientDtoList, HttpStatus.OK);
+        } catch (Exception e) {
+            return exceptionHandling(e);
+        }
+    }
 
     @GetMapping("/cookingstep/findall")
     public ResponseEntity<?> findAllCs() throws Exception {

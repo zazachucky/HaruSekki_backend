@@ -9,6 +9,6 @@ import java.util.List;
 public interface IngredientService {
     List<IngredientDto> findAllById() throws Exception;
     List<IngredientDto> findByCategory(String category) throws Exception;
- //   List<IngredientDto> findByRecipeId(Long recipe_id) throws Exception;
+    List<IngredientDto> findByRecipeId(Long recipe_id) throws Exception;
 
 }

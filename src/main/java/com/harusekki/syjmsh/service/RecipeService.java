@@ -10,4 +10,5 @@ public interface RecipeService {
     List<RecipeDto> findByCategory(String category, String order) throws Exception;
     List<RecipeDto> findAll(String order) throws Exception;
     RecipeDto recipeDetail(Long id) throws Exception;
+    List<RecipeDto> findByIngredients(List<Long> ids) throws Exception;
 }

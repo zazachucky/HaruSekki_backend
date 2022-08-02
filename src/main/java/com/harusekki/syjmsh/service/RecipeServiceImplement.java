@@ -98,22 +98,25 @@ public class RecipeServiceImplement implements RecipeService{
         return result;
     }
     @Override
+    public List<RecipeDto> findByIngredients(List<Long> ids) throws Exception{
+        List<RecipeDto> tempList = new ArrayList<>();
+        tempList.addAll(recipeDao.findAllByIngredients(ids, ids.size()));
+        List<RecipeDto> result = new ArrayList<>();
+        for(int i = 0 ; i < tempList.size(); i++){
+            RecipeDto recipeDto = new RecipeDto();
+            recipeDto.setTitle(tempList.get(i).getTitle());
+            recipeDto.setImgList(tempList.get(i).getImgList());
+            recipeDto.setId(tempList.get(i).getId());
+            result.add(recipeDto);
+        }
+        return result;
+    }
+    @Override
     public RecipeDto recipeDetail(Long id) throws Exception{
         RecipeDto tempRecipe = new RecipeDto();
         tempRecipe = recipeDao.findById(id).get();
         tempRecipe.setCsList(cookingStepDao.findAllByRecipeid(id));
 
         return tempRecipe;
-//        tempList.addAll(recipeDao.findAllByTitleContaining(title));
-//        List<RecipeDto> result = new ArrayList<>();
-//        for(int i = 0 ; i < tempList.size(); i++){
-//            RecipeDto recipeDto = new RecipeDto();
-//            recipeDto.setTitle(tempList.get(i).getTitle());
-//            recipeDto.setImgList(tempList.get(i).getImgList());
-//            recipeDto.setId(tempList.get(i).getId());
-//            result.add(recipeDto);
-//        }
-//        return result;
     }
-
 }

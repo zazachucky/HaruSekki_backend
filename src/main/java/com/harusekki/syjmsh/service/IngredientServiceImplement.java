@@ -43,11 +43,19 @@ public class IngredientServiceImplement implements IngredientService{
         }
         return result;
     }
-//    @Override
-//    public List<IngredientDto> findByRecipeId(Long recipe_id) throws Exception{
-//        List<IngredientDto> ingredientDtoList = new ArrayList<>();
-//        ingredientDtoList.addAll(ingredientDao.findAllByRecipeDtosId(recipe_id));
-//
-//        return ingredientDtoList;
-//    }
+    @Override
+    public List<IngredientDto> findByRecipeId(Long recipe_id) throws Exception{
+        List<IngredientDto> tempList = new ArrayList<>();
+        tempList.addAll(ingredientDao.findAllByRecipeId(recipe_id));
+        List<IngredientDto> result = new ArrayList<>();
+        for(int i = 0 ; i < tempList.size(); i++){
+            IngredientDto ingredientDto = new IngredientDto();
+            ingredientDto.setTitle(tempList.get(i).getTitle());
+            ingredientDto.setImage(tempList.get(i).getImage());
+            ingredientDto.setId(tempList.get(i).getId());
+            ingredientDto.setCategory(tempList.get(i).getCategory());
+            result.add(ingredientDto);
+        }
+        return result;
+    }
 }

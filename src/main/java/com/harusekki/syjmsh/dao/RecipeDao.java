@@ -2,6 +2,8 @@ package com.harusekki.syjmsh.dao;
 
 import com.harusekki.syjmsh.dto.RecipeDto;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 import java.util.Optional;
@@ -25,4 +27,12 @@ public interface RecipeDao extends JpaRepository<RecipeDto, Long> {
     List<RecipeDto> findAllByOrderByHitsAsc();
     List<RecipeDto> findAllByOrderByLikesDesc();
     List<RecipeDto> findAllByOrderByLikesAsc();
+    @Query(value = "select * from recipe\n" +
+            "where recipe_id in(\n" +
+            "select recipe_recipe_id\n" +
+            "from recipe_has_ingredient\n" +
+            "where ingredient_ingredient_id  in :ingredients\n" +
+            "group by recipe_recipe_id\n" +
+            "having count(recipe_recipe_id) >= :size)", nativeQuery = true)
+    List<RecipeDto> findAllByIngredients(@Param("ingredients") List<Long> ingredient_ids, @Param("size") int size);
 }
