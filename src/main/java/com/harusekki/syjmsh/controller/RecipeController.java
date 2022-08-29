@@ -60,7 +60,7 @@ public class RecipeController {
     public ResponseEntity<?> findRecipeByIngredient(@RequestParam("ingredient_id") Long id) throws Exception {
         List<Long> idList = new ArrayList<>();
         try {
-            idList.addAll(recipeService.findByIngredient(id));
+            idList.addAll(recipeService.findIdListByIngredientId(id));
             return new ResponseEntity<List<Long>>(idList, HttpStatus.OK);
         } catch (Exception e) {
             return exceptionHandling(e);

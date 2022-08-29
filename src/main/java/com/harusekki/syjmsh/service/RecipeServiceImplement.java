@@ -22,6 +22,8 @@ public class RecipeServiceImplement implements RecipeService{
     private ImageDao imageDao;
     @Autowired
     private IngredientDao ingredientDao;
+    @Autowired
+    private IngredientService ingredientService;
     @Override
     public List<RecipeDto> findByTitle(String title, String order) throws Exception{
         List<RecipeDto> tempList = new ArrayList<>();
@@ -38,6 +40,11 @@ public class RecipeServiceImplement implements RecipeService{
                 tempList.addAll(recipeDao.findAllByTitleContainingOrderByLikesDesc(title)); break;
             case "likeasc":
                 tempList.addAll(recipeDao.findAllByTitleContainingOrderByLikesAsc(title)); break;
+        }
+        for(int i = 0; i < tempList.size(); i++){
+            tempList.get(i).setCsList(cookingStepDao.findAllByRecipeid(tempList.get(i).getId()));
+            tempList.get(i).setImgList(imageDao.findAllByRecipeid(tempList.get(i).getId()));
+            tempList.get(i).setIngredientList(ingredientService.findByRecipeId(tempList.get(i).getId()));
         }
         return tempList;
     }
@@ -58,6 +65,11 @@ public class RecipeServiceImplement implements RecipeService{
             case "likeasc":
                 tempList.addAll(recipeDao.findAllByCategoryContainingOrderByLikesAsc(category)); break;
         }
+        for(int i = 0; i < tempList.size(); i++){
+            tempList.get(i).setCsList(cookingStepDao.findAllByRecipeid(tempList.get(i).getId()));
+            tempList.get(i).setImgList(imageDao.findAllByRecipeid(tempList.get(i).getId()));
+            tempList.get(i).setIngredientList(ingredientService.findByRecipeId(tempList.get(i).getId()));
+        }
         return tempList;
     }
     @Override
@@ -77,31 +89,28 @@ public class RecipeServiceImplement implements RecipeService{
             case "likeasc":
                 tempList.addAll(recipeDao.findAllByOrderByLikesAsc()); break;
         }
+        for(int i = 0; i < tempList.size(); i++){
+            tempList.get(i).setCsList(cookingStepDao.findAllByRecipeid(tempList.get(i).getId()));
+            tempList.get(i).setImgList(imageDao.findAllByRecipeid(tempList.get(i).getId()));
+            tempList.get(i).setIngredientList(ingredientService.findByRecipeId(tempList.get(i).getId()));
+        }
         return tempList;
     }
     @Override
     public List<RecipeDto> findByIngredients(List<Long> ids) throws Exception{
         List<RecipeDto> tempList = new ArrayList<>();
         tempList.addAll(recipeDao.findAllByIngredients(ids, ids.size()));
+        for(int i = 0; i < tempList.size(); i++){
+            tempList.get(i).setCsList(cookingStepDao.findAllByRecipeid(tempList.get(i).getId()));
+            tempList.get(i).setImgList(imageDao.findAllByRecipeid(tempList.get(i).getId()));
+            tempList.get(i).setIngredientList(ingredientService.findByRecipeId(tempList.get(i).getId()));
+        }
         return tempList;
-//        List<RecipeDto> result = new ArrayList<>();
-//        for(int i = 0 ; i < tempList.size(); i++){
-//            RecipeDto recipeDto = new RecipeDto();
-//            recipeDto.setTitle(tempList.get(i).getTitle());
-//            recipeDto.setImgList(tempList.get(i).getImgList());
-//            recipeDto.setId(tempList.get(i).getId());
-//            result.add(recipeDto);
-//        }
-//        return result;
     }
     @Override
-    public List<Long> findByIngredient(Long ingredient_id) throws Exception{
-        List<RecipeDto> recipeDtoList = new ArrayList<>();
-        recipeDtoList.addAll(recipeDao.findAllByIngredient(ingredient_id));
+    public List<Long> findIdListByIngredientId(Long ingredient_id) throws Exception{
         List<Long> tempList = new ArrayList<>();
-        for(int i = 0; i < recipeDtoList.size(); i++){
-            tempList.add(recipeDtoList.get(i).getId());
-        }
+        tempList.addAll(recipeDao.findAllByIngredient(ingredient_id));
         return tempList;
     }
     @Override
@@ -110,7 +119,7 @@ public class RecipeServiceImplement implements RecipeService{
         tempRecipe = recipeDao.findById(id).get();
         tempRecipe.setCsList(cookingStepDao.findAllByRecipeid(id));
         tempRecipe.setImgList(imageDao.findAllByRecipeid(id));
-        tempRecipe.setIngredientList(ingredientDao.findAllByRecipeId(id));
+        tempRecipe.setIngredientList(ingredientService.findByRecipeId(id));
 
         return tempRecipe;
     }
