@@ -35,7 +35,7 @@ public class RecipeDto {
     private Long likes;
 
     @Column(name="recipe_imglist")
-    private String image;
+    private String image; // 없앨 예정
 
     @Transient
     private List<IngredientDto> ingredientList;

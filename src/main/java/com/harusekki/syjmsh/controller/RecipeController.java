@@ -56,6 +56,16 @@ public class RecipeController {
             return exceptionHandling(e);
         }
     }
+    @GetMapping("/recipe/findbyingredient")
+    public ResponseEntity<?> findRecipeByIngredient(@RequestParam("ingredient_id") Long id) throws Exception {
+        List<Long> idList = new ArrayList<>();
+        try {
+            idList.addAll(recipeService.findByIngredient(id));
+            return new ResponseEntity<List<Long>>(idList, HttpStatus.OK);
+        } catch (Exception e) {
+            return exceptionHandling(e);
+        }
+    }
 
     @GetMapping("/recipe/findall")
     public ResponseEntity<?> findRecipeAll(@RequestParam("order") String order) throws Exception {
@@ -94,7 +104,7 @@ public class RecipeController {
     public ResponseEntity<?> findIngredientAll() throws Exception {
         List<IngredientDto> ingredientDtoList = new ArrayList<>();
         try {
-            ingredientDtoList.addAll(ingredientService.findAllById());
+            ingredientDtoList.addAll(ingredientService.findAll());
             return new ResponseEntity<List<IngredientDto>>(ingredientDtoList, HttpStatus.OK);
         } catch (Exception e) {
             return exceptionHandling(e);

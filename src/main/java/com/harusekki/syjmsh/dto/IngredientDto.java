@@ -30,5 +30,5 @@ public class IngredientDto {
     private String image;
 
     @Transient
-    private List<RecipeDto> recipeList;
+    private List<Long> recipeList;
 }

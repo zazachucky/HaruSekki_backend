@@ -39,15 +39,7 @@ public class RecipeServiceImplement implements RecipeService{
             case "likeasc":
                 tempList.addAll(recipeDao.findAllByTitleContainingOrderByLikesAsc(title)); break;
         }
-        List<RecipeDto> result = new ArrayList<>();
-        for(int i = 0 ; i < tempList.size(); i++){
-            RecipeDto recipeDto = new RecipeDto();
-            recipeDto.setTitle(tempList.get(i).getTitle());
-            recipeDto.setImgList(tempList.get(i).getImgList());
-            recipeDto.setId(tempList.get(i).getId());
-            result.add(recipeDto);
-        }
-        return result;
+        return tempList;
     }
     @Override
     public List<RecipeDto> findByCategory(String category, String order) throws Exception{
@@ -66,15 +58,7 @@ public class RecipeServiceImplement implements RecipeService{
             case "likeasc":
                 tempList.addAll(recipeDao.findAllByCategoryContainingOrderByLikesAsc(category)); break;
         }
-        List<RecipeDto> result = new ArrayList<>();
-        for(int i = 0 ; i < tempList.size(); i++){
-            RecipeDto recipeDto = new RecipeDto();
-            recipeDto.setTitle(tempList.get(i).getTitle());
-            recipeDto.setImgList(tempList.get(i).getImgList());
-            recipeDto.setId(tempList.get(i).getId());
-            result.add(recipeDto);
-        }
-        return result;
+        return tempList;
     }
     @Override
     public List<RecipeDto> findAll(String order) throws Exception{
@@ -93,29 +77,32 @@ public class RecipeServiceImplement implements RecipeService{
             case "likeasc":
                 tempList.addAll(recipeDao.findAllByOrderByLikesAsc()); break;
         }
-        List<RecipeDto> result = new ArrayList<>();
-        for(int i = 0 ; i < tempList.size(); i++){
-            RecipeDto recipeDto = new RecipeDto();
-            recipeDto.setTitle(tempList.get(i).getTitle());
-            recipeDto.setImgList(tempList.get(i).getImgList());
-            recipeDto.setId(tempList.get(i).getId());
-            result.add(recipeDto);
-        }
-        return result;
+        return tempList;
     }
     @Override
     public List<RecipeDto> findByIngredients(List<Long> ids) throws Exception{
         List<RecipeDto> tempList = new ArrayList<>();
         tempList.addAll(recipeDao.findAllByIngredients(ids, ids.size()));
-        List<RecipeDto> result = new ArrayList<>();
-        for(int i = 0 ; i < tempList.size(); i++){
-            RecipeDto recipeDto = new RecipeDto();
-            recipeDto.setTitle(tempList.get(i).getTitle());
-            recipeDto.setImgList(tempList.get(i).getImgList());
-            recipeDto.setId(tempList.get(i).getId());
-            result.add(recipeDto);
+        return tempList;
+//        List<RecipeDto> result = new ArrayList<>();
+//        for(int i = 0 ; i < tempList.size(); i++){
+//            RecipeDto recipeDto = new RecipeDto();
+//            recipeDto.setTitle(tempList.get(i).getTitle());
+//            recipeDto.setImgList(tempList.get(i).getImgList());
+//            recipeDto.setId(tempList.get(i).getId());
+//            result.add(recipeDto);
+//        }
+//        return result;
+    }
+    @Override
+    public List<Long> findByIngredient(Long ingredient_id) throws Exception{
+        List<RecipeDto> recipeDtoList = new ArrayList<>();
+        recipeDtoList.addAll(recipeDao.findAllByIngredient(ingredient_id));
+        List<Long> tempList = new ArrayList<>();
+        for(int i = 0; i < recipeDtoList.size(); i++){
+            tempList.add(recipeDtoList.get(i).getId());
         }
-        return result;
+        return tempList;
     }
     @Override
     public RecipeDto recipeDetail(Long id) throws Exception{
