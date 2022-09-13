@@ -44,7 +44,7 @@ public class RecipeServiceImplement implements RecipeService{
         for(int i = 0; i < tempList.size(); i++){
             tempList.get(i).setCsList(cookingStepDao.findAllByRecipeid(tempList.get(i).getId()));
             tempList.get(i).setImgList(imageDao.findPathByRecipeid(tempList.get(i).getId()));
-            tempList.get(i).setIngredientList(ingredientService.findByRecipeId(tempList.get(i).getId()));
+            //tempList.get(i).setIngredientList(ingredientService.findByRecipeId(tempList.get(i).getId()));
         }
         return tempList;
     }
@@ -68,7 +68,7 @@ public class RecipeServiceImplement implements RecipeService{
         for(int i = 0; i < tempList.size(); i++){
             tempList.get(i).setCsList(cookingStepDao.findAllByRecipeid(tempList.get(i).getId()));
             tempList.get(i).setImgList(imageDao.findPathByRecipeid(tempList.get(i).getId()));
-            tempList.get(i).setIngredientList(ingredientService.findByRecipeId(tempList.get(i).getId()));
+           // tempList.get(i).setIngredientList(ingredientService.findByRecipeId(tempList.get(i).getId()));
         }
         return tempList;
     }
@@ -92,7 +92,7 @@ public class RecipeServiceImplement implements RecipeService{
         for(int i = 0; i < tempList.size(); i++){
             tempList.get(i).setCsList(cookingStepDao.findAllByRecipeid(tempList.get(i).getId()));
             tempList.get(i).setImgList(imageDao.findPathByRecipeid(tempList.get(i).getId()));
-            tempList.get(i).setIngredientList(ingredientService.findByRecipeId(tempList.get(i).getId()));
+          //  tempList.get(i).setIngredientList(ingredientService.findByRecipeId(tempList.get(i).getId()));
         }
         return tempList;
     }
@@ -103,7 +103,7 @@ public class RecipeServiceImplement implements RecipeService{
         for(int i = 0; i < tempList.size(); i++){
             tempList.get(i).setCsList(cookingStepDao.findAllByRecipeid(tempList.get(i).getId()));
             tempList.get(i).setImgList(imageDao.findPathByRecipeid(tempList.get(i).getId()));
-            tempList.get(i).setIngredientList(ingredientService.findByRecipeId(tempList.get(i).getId()));
+         //   tempList.get(i).setIngredientList(ingredientService.findByRecipeId(tempList.get(i).getId()));
         }
         return tempList;
     }
@@ -119,7 +119,7 @@ public class RecipeServiceImplement implements RecipeService{
         tempRecipe = recipeDao.findById(id).get();
         tempRecipe.setCsList(cookingStepDao.findAllByRecipeid(id));
         tempRecipe.setImgList(imageDao.findPathByRecipeid(id));
-        tempRecipe.setIngredientList(ingredientService.findByRecipeId(id));
+     //   tempRecipe.setIngredientList(ingredientService.findByRecipeId(id));
 
         return tempRecipe;
     }
