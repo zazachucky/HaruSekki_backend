@@ -42,9 +42,9 @@ public class RecipeServiceImplement implements RecipeService{
                 tempList.addAll(recipeDao.findAllByTitleContainingOrderByLikesAsc(title)); break;
         }
         for(int i = 0; i < tempList.size(); i++){
-            tempList.get(i).setCsList(cookingStepDao.findAllByRecipeid(tempList.get(i).getId()));
+            //tempList.get(i).setCsList(cookingStepDao.findAllByRecipeid(tempList.get(i).getId()));
             tempList.get(i).setImgList(imageDao.findPathByRecipeid(tempList.get(i).getId()));
-            tempList.get(i).setIngredientList(ingredientService.findByRecipeId(tempList.get(i).getId()));
+            //tempList.get(i).setIngredientList(ingredientService.findByRecipeId(tempList.get(i).getId()));
         }
         return tempList;
     }
@@ -66,9 +66,9 @@ public class RecipeServiceImplement implements RecipeService{
                 tempList.addAll(recipeDao.findAllByCategoryContainingOrderByLikesAsc(category)); break;
         }
         for(int i = 0; i < tempList.size(); i++){
-            tempList.get(i).setCsList(cookingStepDao.findAllByRecipeid(tempList.get(i).getId()));
+            //tempList.get(i).setCsList(cookingStepDao.findAllByRecipeid(tempList.get(i).getId()));
             tempList.get(i).setImgList(imageDao.findPathByRecipeid(tempList.get(i).getId()));
-            tempList.get(i).setIngredientList(ingredientService.findByRecipeId(tempList.get(i).getId()));
+            //tempList.get(i).setIngredientList(ingredientService.findByRecipeId(tempList.get(i).getId()));
         }
         return tempList;
     }
@@ -101,9 +101,9 @@ public class RecipeServiceImplement implements RecipeService{
         List<RecipeDto> tempList = new ArrayList<>();
         tempList.addAll(recipeDao.findAllByIngredients(ids, ids.size()));
         for(int i = 0; i < tempList.size(); i++){
-            tempList.get(i).setCsList(cookingStepDao.findAllByRecipeid(tempList.get(i).getId()));
+            //tempList.get(i).setCsList(cookingStepDao.findAllByRecipeid(tempList.get(i).getId()));
             tempList.get(i).setImgList(imageDao.findPathByRecipeid(tempList.get(i).getId()));
-            tempList.get(i).setIngredientList(ingredientService.findByRecipeId(tempList.get(i).getId()));
+            //tempList.get(i).setIngredientList(ingredientService.findByRecipeId(tempList.get(i).getId()));
         }
         return tempList;
     }

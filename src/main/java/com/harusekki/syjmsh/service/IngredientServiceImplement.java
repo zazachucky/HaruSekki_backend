@@ -21,33 +21,33 @@ public class IngredientServiceImplement implements IngredientService{
     public List<IngredientDto> findByCategory(String category) throws Exception{
         List<IngredientDto> tempList = new ArrayList<>();
         tempList.addAll(ingredientDao.findAllByCategoryContaining(category));
-        for(int i = 0; i < tempList.size(); i++){
-            List<Long> idList = new ArrayList<>();
-            idList.addAll(recipeDao.findAllByIngredient(tempList.get(i).getId()));
-            tempList.get(i).setRecipeList(idList);
-        }
+//        for(int i = 0; i < tempList.size(); i++){
+//            List<Long> idList = new ArrayList<>();
+//            idList.addAll(recipeDao.findAllByIngredient(tempList.get(i).getId()));
+//            tempList.get(i).setRecipeList(idList);
+//        }
         return tempList;
     }
     @Override
     public List<IngredientDto> findAll() throws Exception{
         List<IngredientDto> tempList = new ArrayList<>();
         tempList.addAll(ingredientDao.findAllByOrderByIdAsc());
-        for(int i = 0; i < tempList.size(); i++){
-            List<Long> idList = new ArrayList<>();
-            idList.addAll(recipeDao.findAllByIngredient(tempList.get(i).getId()));
-            tempList.get(i).setRecipeList(idList);
-        }
+//        for(int i = 0; i < tempList.size(); i++){
+//            List<Long> idList = new ArrayList<>();
+//            idList.addAll(recipeDao.findAllByIngredient(tempList.get(i).getId()));
+//            tempList.get(i).setRecipeList(idList);
+//        }
         return tempList;
     }
     @Override
     public List<IngredientDto> findByRecipeId(Long recipe_id) throws Exception{
         List<IngredientDto> tempList = new ArrayList<>();
         tempList.addAll(ingredientDao.findAllByRecipeId(recipe_id));
-        for(int i = 0; i < tempList.size(); i++){
-            List<Long> idList = new ArrayList<>();
-            idList.addAll(recipeDao.findAllByIngredient(tempList.get(i).getId()));
-            tempList.get(i).setRecipeList(idList);
-        }
+//        for(int i = 0; i < tempList.size(); i++){
+//            List<Long> idList = new ArrayList<>();
+//            idList.addAll(recipeDao.findAllByIngredient(tempList.get(i).getId()));
+//            tempList.get(i).setRecipeList(idList);
+//        }
         return tempList;
     }
 }
