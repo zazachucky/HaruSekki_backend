@@ -11,6 +11,7 @@ import java.util.List;
 public interface IngredientDao  extends JpaRepository<IngredientDto, Long> {
     List<IngredientDto> findAllByOrderByIdAsc();
     List<IngredientDto> findAllByCategoryContaining(String category);
+    List<IngredientDto> findAllByTitleContainingAndCategory(String title, String category);
     @Query(value = "select ingredient_id, ingredient_title, ingredient_category, ingredient_image from ingredient\n" +
             "where ingredient_id in (\n" +
             "select ingredient_ingredient_id\n" +

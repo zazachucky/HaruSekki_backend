@@ -10,5 +10,6 @@ public interface IngredientService {
     List<IngredientDto> findAll() throws Exception;
     List<IngredientDto> findByCategory(String category) throws Exception;
     List<IngredientDto> findByRecipeId(Long recipe_id) throws Exception;
+    List<IngredientDto> findByTitleAndCategory(String title, String category) throws Exception;
 
 }

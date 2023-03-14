@@ -10,6 +10,7 @@ public interface RecipeService {
     List<RecipeDto> findByCategory(String category, String order) throws Exception;
     List<RecipeDto> findAll(String order) throws Exception;
     RecipeDto recipeDetail(Long id) throws Exception;
-    List<RecipeDto> findByIngredients(List<Long> ids) throws Exception;
-    List<Long> findIdListByIngredientId(Long ingredient_id) throws Exception;
+    List<RecipeDto> findByIngredients(List<Long> ids, String order) throws Exception;
+    void likeRecipe(Long id) throws Exception;
+//    List<Long> findIdListByIngredientId(Long ingredient_id) throws Exception;
 }
